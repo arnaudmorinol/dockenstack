@@ -19,7 +19,7 @@ RUN apt-get -qqy install git socat curl sudo apt-transport-https vim wget net-to
 RUN apt-get -qqy install apparmor
 
 # Extra requirements for pip-requirements
-RUN apt-get install -qqy libffi-dev libkrb5-dev
+RUN apt-get install -qqy libffi-dev libkrb5-dev pkg-config libvirt-dev
 
 # Configure and install MySQL
 RUN echo 'mysql-server mysql-server/root_password password devstack' | debconf-set-selections; \
@@ -78,7 +78,7 @@ RUN pip install -r https://raw.github.com/openstack/requirements/master/global-r
 RUN pip install -r https://raw2.github.com/openstack/tempest/master/requirements.txt
 
 # Pre-checkout git repos
-RUN su devstack -c '/bin/bash /opt/dockenstack/bin/openstack-git-checkout'
+#RUN su devstack -c '/bin/bash /opt/dockenstack/bin/openstack-git-checkout'
 
 RUN git clone https://github.com/stackforge/nova-docker /opt/stack/nova-docker
 WORKDIR /opt/stack/nova-docker
